@@ -132,6 +132,5 @@ public class App {
         }
         
         System.out.println("Gracias por utilizar el software");
-        System.out.println("Prueba de github");
     }
 }
