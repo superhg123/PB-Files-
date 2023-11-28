@@ -68,18 +68,20 @@ public class App {
             }
         }
     }
-    public static void imprimirLista() {
-        Ticket aux = new Ticket(); 
-        aux = inicial; 
-        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "N. de Boleto","Nombre", "Concierto", "Precio", "Cantidad");
-        while(true) {
-            if (aux.getTicket() == null) {
-                break;
-            } else {
-                System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", aux.getNumero(),charAString(aux.getNombre()), charAString(aux.getConcierto()), aux.getPrecio(), aux.getCantidad());
-                aux = aux.getTicket();
-            }
+    public static void imprimirLista(Ticket primero) {
+        if (primero.getTicket() == null) {
+            return; 
         }
+        
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", primero.getNumero(),charAString(primero.getNombre()), charAString(primero.getConcierto()), primero.getPrecio(), primero.getCantidad());
+        imprimirLista(primero.getTicket());
+    }
+    public static void imprimirListaPila(Ticket inicio) {
+        if (inicio.getTicket() == null) {
+            return; 
+        }
+        imprimirListaPila(inicio.getTicket());
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", inicio.getNumero(),charAString(inicio.getNombre()), charAString(inicio.getConcierto()), inicio.getPrecio(), inicio.getCantidad());
     }
     public static String charAString(char[] arreglo) {
         String regreso = "";
@@ -106,7 +108,15 @@ public class App {
         boleto.setTicket(aux);
         }
     public static void Lista() {
-        imprimirLista();
+        System.out.println("Inserte la tabla que deseee visualizar" + '\n' + "1.- ¿Quiénes ordenaron primero" + '\n' + "2.- ¿Quienes se sientan en las últimas filas");
+        int tabla = limitarRango(1, 2, "Esa opción no se encunetra dentro de las opciones"); 
+        if (tabla == 1) {
+            System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "N. de Boleto","Nombre", "Concierto", "Precio", "Cantidad");
+            imprimirLista(inicial);
+        } else {
+            System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "N. de Boleto","Nombre", "Concierto", "Precio", "Cantidad");
+            imprimirListaPila(inicial);
+        }
     }   
     public static void main(String[] args) {
         inicial.setNumero(1);
