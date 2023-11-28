@@ -40,7 +40,7 @@ public class PilasYColas {
             return; 
         }
         if (inicio.getNombre() == null) {
-            return; 
+            return; a
         }
             imprimirListaPila(inicio.getSiguiente());
             System.out.println(inicio.getNombre());
