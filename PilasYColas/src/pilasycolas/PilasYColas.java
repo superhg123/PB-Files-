@@ -72,6 +72,5 @@ public class PilasYColas {
     imprimirListaCola(inicio);
     System.out.println("------------ Pila -----------");
     imprimirListaPila(inicio);
-    System.out.println("Pruebas");
    }
 }
